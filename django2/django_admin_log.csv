@@ -1,0 +1,20 @@
+1,2024-05-03 16:59:58.024953,1,playstation 4,1,"[{""added"": {}}]",7,2
+2,2024-05-03 17:00:23.010379,2,atari,1,"[{""added"": {}}]",7,2
+3,2024-05-03 17:01:43.395679,3,nintendo switch,1,"[{""added"": {}}]",7,2
+4,2024-05-03 18:27:00.053097,5,XBOX SERIES X,2,"[{""changed"": {""fields"": [""Imagem""]}}]",7,2
+5,2024-05-03 18:27:08.971674,4,MASTER SYSTEM,2,"[{""changed"": {""fields"": [""Imagem""]}}]",7,2
+6,2024-05-03 18:27:16.475548,3,nintendo switch,2,"[{""changed"": {""fields"": [""Imagem""]}}]",7,2
+7,2024-05-03 18:27:22.878587,2,atari,2,"[{""changed"": {""fields"": [""Imagem""]}}]",7,2
+8,2024-05-03 18:27:35.472802,1,playstation 4,2,"[{""changed"": {""fields"": [""Imagem""]}}]",7,2
+9,2024-05-03 19:57:42.852212,6,nintendo,2,"[{""changed"": {""fields"": [""Estoque""]}}]",7,2
+10,2024-05-14 20:16:44.545246,10,x1,3,"",7,2
+11,2024-05-14 20:16:52.682023,2,atari,3,"",7,2
+12,2024-05-14 20:16:56.306123,1,playstation 4,3,"",7,2
+13,2024-05-14 20:17:58.994723,9,shampoo Kérastase,2,"[{""changed"": {""fields"": [""Nome"", ""Pre\u00e7o"", ""Estoque"", ""Imagem""]}}]",7,2
+14,2024-05-14 20:20:16.564280,8,SCHWARZKOPF CONDIOCIONADOR,2,"[{""changed"": {""fields"": [""Nome"", ""Pre\u00e7o"", ""Estoque"", ""Imagem""]}}]",7,2
+15,2024-05-14 20:20:57.282460,7,L'ANZA VOLUMIZADOR,2,"[{""changed"": {""fields"": [""Nome"", ""Pre\u00e7o"", ""Estoque"", ""Imagem""]}}]",7,2
+16,2024-05-14 20:21:21.864850,6,CHAPINHA TAIFF,2,"[{""changed"": {""fields"": [""Nome"", ""Pre\u00e7o"", ""Estoque"", ""Imagem""]}}]",7,2
+17,2024-05-14 20:22:11.884478,5,L'OREAL CURL EXPRESSION,2,"[{""changed"": {""fields"": [""Nome"", ""Pre\u00e7o"", ""Estoque"", ""Imagem""]}}]",7,2
+18,2024-05-14 20:22:42.986450,4,KIT WELLA INVIGO,2,"[{""changed"": {""fields"": [""Nome"", ""Pre\u00e7o"", ""Estoque"", ""Imagem""]}}]",7,2
+19,2024-05-14 20:23:13.273119,3,KIT TESOURAS PROFISSIONAL,2,"[{""changed"": {""fields"": [""Nome"", ""Pre\u00e7o"", ""Estoque"", ""Imagem""]}}]",7,2
+20,2024-05-14 20:30:08.653740,8,SCHWARZKOPF CONDICIONADOR,2,"[{""changed"": {""fields"": [""Nome""]}}]",7,2

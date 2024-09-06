@@ -1,0 +1,90 @@
+Formulário de cadastro
+
+ao enviar o formulário ele deve retornar um email para o dono do site.
+
+no arquivo settings.py digitar estes comandos
+
+# configurações de e-mail
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'(e-mail enviado para o python)
+
+### EMAIL_HOST = 'localhost' normamelmente é localhost
+### EMAIL_HOST_USER = 'NO-REPLY@SEUDOMINIO.COM.BR' e-mail usado pra se convectar ao servidor de e-mail
+### EMAIL_PORT = 587 conexão segura normalmente é 587, seu host va informa quais são os dados
+### EMAIL_USER_TSL = True se vai usar criptografia ou não
+### EMAIL_HOST_PASSWORD = 'sua senha' qual a senha do e-mail do reply
+
+no arquivo views.py deve fazer edição dos comandos (mudança):
+***antigo texto no arquivo:
+
+from django.shortcuts import render
+from django.contrib import messages
+
+from .forms import ContatoForm
+
+def index(request):
+    return render(request, 'index.html')
+
+
+def contato(request):
+    form = ContatoForm(request.POST or None)
+
+    if str(request.method) == 'POST':
+        print(f'Post: {request.POST}')
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            assunto = form.cleaned_data['assunto']
+            mensagem = form.cleaned_data['mensagem']
+
+            print('Mensagem enviada')
+            print(f'Nome: {nome}')
+            print(f'Email: {email}')
+            print(f'assunto: {assunto}')
+            print(f'Mensagem: {mensagem}')
+
+            messages.success(request, 'E-mail enviado com sucesso!')
+            form = ContatoForm()
+        else:
+            messages.error(request, 'Erro ao enviar e-mail')
+
+    context = {'form': form}
+    return render(request, 'contato.html', context)
+
+
+def produto(request):
+    return render(request, 'produto.html')
+
+***novo texto no arquivo:
+
+from django.shortcuts import render
+from django.contrib import messages
+
+from .forms import ContatoForm
+
+def index(request):
+    return render(request, 'index.html')
+
+
+def contato(request):
+    form = ContatoForm(request.POST or None)
+
+    if str(request.method) == 'POST':
+        if form.is_valid():
+            form.send_mail()
+
+            messages.success(request, 'E-mail enviado com sucesso!')
+            form = ContatoForm()
+        else:
+            messages.error(request, 'Erro ao enviar e-mail')
+    context = {'form': form}
+    return render(request, 'contato.html', context)
+
+
+def produto(request):
+    return render(request, 'produto.html')
+
+########CRIAR SUPER USUARIO##############
+USUARIO: priscila
+e-mail: priscila@yahoo.com.br
+senha: soraia65
+
