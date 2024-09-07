@@ -1,1 +1,61 @@
+# Python 
+*.py[cod]
+*__pycache__/
+*.pyo
+*.pyd
+*.pyd
+*.pyo
+*.pyd
+*.pyo
+*.pyc
+
+# Django
+*.log
+*.pot
+*.py[cod]
+__pycache__/
+db.sqlite3
+*.sqlite3
+*.env
+
+# Virtual environments
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# pipenv
 Pipfile.lock
+
+# Migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# Static files
+staticfiles/
+static/
+media/
+
+# Ignore folders for IDEs and other system files
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+
+# Ignore backup files
+*.bak
+*.orig
+*.save
+
+# Ignore compiled code
+*.pyc
+
+# Ignore the database file
+*.sqlite3
+
+# Ignore cache and session files
+*.log
+*.out
+*.pid
