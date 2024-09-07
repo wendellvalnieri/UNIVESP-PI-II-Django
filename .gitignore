@@ -33,9 +33,6 @@ Pipfile.lock
 !*/migrations/__init__.py
 
 # Static files
-staticfiles/
-static/
-media/
 
 # Ignore folders for IDEs and other system files
 .idea/
