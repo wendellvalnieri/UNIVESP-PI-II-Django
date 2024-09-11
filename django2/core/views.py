@@ -13,6 +13,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 
+API_URL = 'http://localhost:4333'
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -85,7 +87,7 @@ def serviços(request):
     return render(request, 'serviços.html')
 
 def servicos(request):
-    response = requests.get('http://localhost:4333/servicos')
+    response = requests.get(API_URL + '/servicos')
     
     if response.status_code == 200:
         servicos = response.json() 
@@ -95,7 +97,7 @@ def servicos(request):
     return render(request, 'servicos.html', {'servicos': servicos})
 
 def produtos(request):
-    response = requests.get('http://localhost:4333/produtos')
+    response = requests.get(API_URL+ '/produtos')
     
     if response.status_code == 200:
         produtos = response.json()
