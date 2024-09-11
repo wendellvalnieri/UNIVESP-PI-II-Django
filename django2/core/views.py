@@ -16,17 +16,6 @@ from django.contrib.auth import authenticate, login
 API_URL = 'http://localhost:4333'
 
 def login_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('produto')
-        else:
-            # Se o login falhar, você pode adicionar uma mensagem de erro
-            messages.error(request, 'Credenciais inválidas. Por favor, tente novamente.')
-            return redirect('login')
     return render(request, 'login.html')
 
 def index(request):
@@ -86,6 +75,7 @@ def produto(request):
 def serviços(request):
     return render(request, 'serviços.html')
 
+
 def servicos(request):
     response = requests.get(API_URL + '/servicos')
     
@@ -105,3 +95,9 @@ def produtos(request):
         produtos = []
 
     return render(request, 'produtos.html', {'produtos': produtos})
+
+def admin_dashboard(request):
+    return render(request, 'administrador/dashboard.html')
+
+def usuario_dashboard(request):
+    return render(request, 'usuario/dashboard.html')
