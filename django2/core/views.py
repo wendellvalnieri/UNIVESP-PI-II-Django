@@ -85,14 +85,21 @@ def serviços(request):
     return render(request, 'serviços.html')
 
 def servicos(request):
-    # Fazer requisição para a API
     response = requests.get('http://localhost:4333/servicos')
     
-    # Verificar se a requisição foi bem sucedida
     if response.status_code == 200:
-        servicos = response.json()  # Assume que a API retorna JSON
+        servicos = response.json() 
     else:
         servicos = []
 
-    # Passar os dados para o template
     return render(request, 'servicos.html', {'servicos': servicos})
+
+def produtos(request):
+    response = requests.get('http://localhost:4333/produtos')
+    
+    if response.status_code == 200:
+        produtos = response.json()
+    else:
+        produtos = []
+
+    return render(request, 'produtos.html', {'produtos': produtos})
