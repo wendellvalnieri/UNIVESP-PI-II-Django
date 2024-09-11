@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load bootstrap4 static %} <!-- Ou bootstrap5 -->
+
+{% block content %}
+<link href="{% static 'css/style2.css' %}" rel="stylesheet">
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-12 text-center">
+            <h3 class="mb-4">Serviços Disponíveis</h3>
+        </div>
+
+        <div class="col-lg-8 col-12 mt-3 mx-auto">
+            {% for servico in servicos %}
+            <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
+                <div class="d-flex">
+                    <img src="{{ servico.imagem }}" class="custom-block-image img-fluid" alt="{{ servico.nome }}">
+
+                    <div class="custom-block-topics-listing-info d-flex">
+                        <div>
+                            <h5 class="mb-2">{{ servico.nome }}</h5>
+                            <p class="mb-0">{{ servico.descricao }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <section class="topics-detail-section section-padding" id="topics-detail">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 m-auto">
+                        <h3 class="mb-4">Sobre Nós</h3>
+
+                        <p>Fazemos arte!
+                            Identificamos sua essência e seu estilo e simplesmente os transformamos
+                            em beleza realçada, apenas explorando o que já existe, simplesmente valorizando os detalhes
+                            e com talento mostrando ao mundo a verdadeira beleza da mulher.
+                            Todas as inspirações e tendências em cores, químicas e cortes. coloração, luzes,
+                            tratamentos, penteados, escovas, permanentes, reflexos, mechas, luzes, balaiagem.
+                            Uma equipe de profissionais com técnicas e conhecimentos que deixarão você se sentindo
+                            absolutamente incrível.</p>
+
+
+
+                        <blockquote>
+                            Um salão de beleza ideal. Para quem procura adequar a imagem pessoal as suas principais,
+                            necessidades, com assessoria especializada em um ambiente sofisticado e com atendimento
+                            personalizado. Solicite orçamento
+                        </blockquote>
+
+
+                        <div class="row my-4">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <img src="{% static 'images/businesswoman-using-tablet-analysis.jpg' %}"
+                                    class="topics-detail-block-image img-fluid" alt="">
+
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12 mt-4 mt-lg-0 mt-md-0">
+                                <img src="{% static 'images/colleagues-working-cozy-office-medium-shot.jpg' %}"
+                                    class="topics-detail-block-image img-fluid" alt="">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+</div>
+
+
+</section>
+
+{% endblock %}

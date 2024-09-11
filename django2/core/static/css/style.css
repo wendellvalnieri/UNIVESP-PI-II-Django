@@ -1,8 +1,8 @@
-*{
+* {
     box-sizing: content-box;
 }
 
-body{
+body {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -14,7 +14,7 @@ body{
     font-family: Arial;
 }
 
-form{
+form {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -42,7 +42,7 @@ input {
     padding-left: 20%;
 }
 
-input:focus{
+input:focus {
     outline-color: brown;
 }
 
@@ -60,26 +60,35 @@ input:focus{
     transition: 0.5s ease;
 }
 
-.btn-blue:hover{
+.btn-blue:hover {
     background: #038bb4;
 }
 
-a{
+a {
     text-decoration: none;
     margin-top: 10px;
     margin-bottom: 20px;
     color: black;
 }
 
-a:hover{
+a:hover {
     color: #00c3ff;
 }
 
-.input-group{
+.input-group {
     width: 90%;
 }
 
-.input-icon{
+.input-icon {
     width: 50px;
     position: absolute;
+}
+
+.whats {
+    position: static;
+
+}
+
+.whats img {
+    width: 100px;
 }

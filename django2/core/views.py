@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -11,8 +12,6 @@ from django.contrib import messages
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -29,8 +28,13 @@ def login_view(request):
     return render(request, 'login.html')
 
 def index(request):
-    # Sua lógica para renderizar a página inicial
     return render(request, 'index.html')
+
+def index2(request):
+    return render(request, 'index.bkp.html')
+
+def home(request):
+    return render(request, 'home.html')
 
 def listaProdutos(request):
     context = {
@@ -80,4 +84,15 @@ def produto(request):
 def serviços(request):
     return render(request, 'serviços.html')
 
+def servicos(request):
+    # Fazer requisição para a API
+    response = requests.get('http://localhost:4333/servicos')
+    
+    # Verificar se a requisição foi bem sucedida
+    if response.status_code == 200:
+        servicos = response.json()  # Assume que a API retorna JSON
+    else:
+        servicos = []
 
+    # Passar os dados para o template
+    return render(request, 'servicos.html', {'servicos': servicos})

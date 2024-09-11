@@ -62,8 +62,10 @@
             </tbody>
         </table>
             {% buttons %}
-                <button type="button" class="btn btn-primary" onclick="cadastraproduto()">Cadastrar Produto</button>
-                <button type="button" class="btn btn-primary">Voltar a página inicial</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='/produto/';">Cadastrar Produto</button>
+
+              <!--  <button type="button" class="btn btn-primary" onclick="cadastraproduto()">Cadastrar Produto</button> -->
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/';">Voltar à página inicial</button>
             {% endbuttons %}
     </div>
     {%bootstrap_javascript jquery='full' %}

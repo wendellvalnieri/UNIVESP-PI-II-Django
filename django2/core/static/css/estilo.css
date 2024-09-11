@@ -1,57 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script:wght@400..700&family=Lovers+Quarrel&family=Playfair+Display:ital,wght@0,400 ..900;1.400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); 
-*{
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script:wght@400..700&family=Lovers+Quarrel&family=Playfair+Display:ital,wght@0,400 ..900;1.400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
     box-sizing: border-box;
 }
 
-body{
+:root {
+    --navbarSize: 100px;
+    --footerSize: 350px;
+}
+
+html,
+body {
+    height: 100%;
     margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
     font-family: 'ROBOTO', sans-serif;
 }
 
-.navbar{
+.navbar {
     display: flex;
     flex-flow: row wrap;
-    height: 100px;
+    height: var(--navbarSize);
     background-color: white;
     justify-content: center;
     align-items: center;
     position: fixed;
     width: 100%;
+    z-index: 9;
 }
 
-.logo{
+#content {
+    padding-top: var(--navbarSize);
+}
+
+.logo {
     flex: 20%;
     margin-left: 10%;
     /* border: 1px solid red; */
     text-align: left;
 }
 
-.logo h1{
+.logo h1 {
     font-family: 'Lobster', cursive;
     color: #180F4A;
-    font-size:26px;
+    font-size: 26px;
 }
 
-.menu{
+.menu {
     flex: 70%;
     /* border: 1px solid green; */
     text-align: right;
     padding: 20px;
 }
-   
-.menu a{
+
+.menu a {
     color: #180F4A;
     text-decoration: none;
     font-size: 20px;
     padding: 20px 16px;
 }
 
-.menu a:hover{
+.menu a:hover {
     color: #FF2978;
     border-top: 4px solid #180F4A;
 }
 
-#botao{
+#botao {
     background: #180F4A;
     padding: 10px 25px;
     color: white;
@@ -60,39 +78,40 @@ body{
     margin-left: 5%;
 }
 
-#botao:hover{
-    border:none;
+#botao:hover {
+    border: none;
     background: #FF2978;
 }
 
-.header{
+.header {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    background: white; 
+    background: white;
     padding: 100px;
-} 
+}
 
-.headline{
+.headline {
     margin-left: 10%;
     flex: 40%;
     /* border:1px solid black; */
 }
 
-.headline h2{
+.headline h2 {
     font-weight: 900;
     font-size: 20px;
-    color:#c679b3;
+    color: #c679b3;
     padding: 0;
     margin: 0;
 }
 
-.headline p{
+.headline p {
     color: gray;
-    text-align:left;
+    text-align: left;
 }
-.contact-btn{
+
+.contact-btn {
     display: inline-block;
     background: #FF2978;
     padding: 20px;
@@ -102,18 +121,18 @@ body{
     text-decoration: none;
 }
 
-.contact-btn:hover{
-    background:#180F4A
+.contact-btn:hover {
+    background: #180F4A
 }
 
-.img-headline{
+.img-headline {
     margin-right: 10%;
     flex: 40%;
     /* border:1px solid deeppink; */
     text-align: center;
 }
 
-section{
+section {
     display: inline-block;
     margin-top: 80px;
     /* border:1px solid black; */
@@ -121,94 +140,90 @@ section{
     margin-right: 5%;
     padding: 5%;
     text-align: center;
-    
+
 }
 
-section h2{
+section h2 {
     width: 100%;
-    font-size:50px;
-    margin:0;
+    font-size: 50px;
+    margin: 0;
     font-family: 'Lobster', cursive;
     font-weight: bold;
-    color:#180F4A;
+    color: #180F4A;
 }
-   
 
-.servicos{
+
+.servicos {
     display: inline-block;
     margin-top: 5%;
 }
 
-.card{
+.card {
     display: inline-block;
     width: 30%;
     padding: 20px;
     margin: 1%;
     border: 1px solid #FF2978;
     border-radius: 10px;
-    cursor:pointer;
-  
+    cursor: pointer;
+
 }
 
-.texto-oculto{
-    display:none;
+.texto-oculto {
+    display: none;
 }
 
 
-.card:hover{
+.card:hover {
     background: #FF2978;
     color: white;
     padding: 40px;
 }
 
-.cad:hover img{
+.cad:hover img {
     display: none;
 }
 
-.cad:hover .cad-text{
-    display:none;
+.cad:hover .cad-text {
+    display: none;
 }
 
-.cad:hover .texto-oculto{
-    display:block;
+.cad:hover .texto-oculto {
+    display: block;
 }
 
-footer{
-    margin-top: 400px;
-    height: 350px;
-    background-image:linear-gradient(180deg,#dccdd7,#9f65aa,black);
+footer {
+    height: var(--footerSize);
+    background-image: linear-gradient(180deg, #dccdd7, #9f65aa, black);
     text-align: center;
     border-top: 5px solid #FF2978;
-
 }
 
-.logo-rodape{
+.logo-rodape {
     padding: 100px;
 }
 
-.salão{
+.salão {
     font-family: 'Lobster', cursive;
-    color:white;
-    font-size:20px; 
+    color: white;
+    font-size: 20px;
 }
 
-.whats{
+.whats {
     position: fixed;
-    bottom:5px;
+    bottom: 5px;
     right: 5px;
-    
+
 }
 
-table{
+table {
     font-family: 'Lobster', cursive;
     color: saddlebrown;
-    font-size:20px;
+    font-size: 20px;
 }
 
-#th{
+#th {
     font-family: 'Lobster', cursive;
     color: darkslategray;
-    font-size:20px;
+    font-size: 20px;
 }
-
-

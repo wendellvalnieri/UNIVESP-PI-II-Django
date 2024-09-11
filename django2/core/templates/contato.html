@@ -1,27 +1,34 @@
-{% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Contato</title>
-    {% bootstrap_css %}
-</head>
-<body>
-    <div class="container">
-        <h1>Contato</h1>
-        {% bootstrap_messages %}
+{% extends 'base.html' %}
+{% load bootstrap4 static %} <!-- Ou bootstrap5 -->
 
-        <form action="{% url 'contato' %}" method="post" class="form" autocomplete="off">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
-                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
-            {% endbuttons %}
-        </form>
-            {% buttons %}
-                <button type="button" class="btn btn-primary" onclick="window.location.href='/';">Voltar à página inicial</button>
-            {% endbuttons %}
+{% block content %}
+<div>
+
+    <h1>Contato</h1>
+
+    <!-- Exibe as mensagens de feedback -->
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
     </div>
-{% bootstrap_javascript jquery='full' %}
-</body>
-</html>
+    {% endif %}
+
+    <form action="{% url 'contato' %}" method="post" class="form" autocomplete="off">
+        {% csrf_token %}
+        {% bootstrap_form form %} <!-- Renderiza o formulário com o estilo Bootstrap -->
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+        {% endbuttons %}
+    </form>
+
+    {% buttons %}
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/';">Voltar à página
+        inicial</button>
+</div>
+
+{% endbuttons %}
+{% endblock %}
