@@ -1,41 +1,39 @@
-document.getElementById("login-form").addEventListener("submit", async function (event) {
-    const url = "http://localhost:4333/auth/login";
+import { postRequest } from './api.js';
+import { successMessage, loadingMessage, errorMessage, closeMessages } from './mensages.js';
+
+const form = document.getElementById("login-form");
+
+async function login(username, password) {
+    const endpoint = "/auth/login";
+
+    try {
+        loadingMessage();
+        const data = await postRequest(endpoint, { username, password });
+        
+        if (!data?.ok) {
+            throw new Error(data.message);
+        }
+
+        const urlDashboard = data.isAdmin ? "/administrador/dashboard" : "/usuario/dashboard";
+
+        sessionStorage.setItem('token', data.token);
+
+        setTimeout(() => {
+            window.location.href = urlDashboard;
+        }, 2000);
+
+        successMessage("Em breve será redirecionado");
+
+    } catch (error) {
+        errorMessage(error.message);
+    }
+}
+
+form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-
-    try {
-        let urlDashboard = "";
-
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        if (data.isAdmin) {
-            urlDashboard = "/administrador/dashboard";
-        } else {
-            urlDashboard = "/usuario/dashboard";
-        }
-        sessionStorage.token = data.token;
-        location.href = urlDashboard;
-
-    } catch (error) {
-        console.error("Erro ao fazer login:", error);
-        alert("Erro ao fazer login. Verifique suas credenciais.");
-    }
-
-    debugger;
+    const response = login(username, password);
+    return;
 });
