@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'core',
     'bootstrap4',
     'stdimage',
@@ -158,3 +157,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ### EMAIL_USER_TSL = True se vai usar criptografia ou não
 ### EMAIL_HOST_PASSWORD = 'sua senha' qual a senha do e-mail do reply
 
+API_URL = "http://localhost:33333"

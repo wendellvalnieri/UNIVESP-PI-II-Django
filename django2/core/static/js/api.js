@@ -21,10 +21,15 @@ export async function getRequest(endpoint) {
         });
 
         if (!response.ok) {
-            throw new Error(`Erro: ${response.statusText}`);
+            throw new Error(response.statusText);
         }
 
-        return await response.json();
+        const data = {
+            data: await response.json(),
+            ok: true
+        }
+
+        return data;
     } catch (error) {
         console.error("Erro na requisição GET:", error);
         throw error;
@@ -64,12 +69,17 @@ export async function putRequest(endpoint, body) {
         });
 
         if (!response.ok) {
-            throw new Error(`Erro: ${response.statusText}`);
+            throw new Error(response.statusText);
         }
 
-        return await response.json();
+        const data = {
+            data: await response.json(),
+            ok: true
+        }
+
+        return data;
     } catch (error) {
-        console.error("Erro na requisição PUT:", error);
+        console.error(error);
         throw error;
     }
 }
@@ -82,12 +92,17 @@ export async function deleteRequest(endpoint) {
         });
 
         if (!response.ok) {
-            throw new Error(`Erro: ${response.statusText}`);
+            throw new Error(esponse.statusText);
         }
 
-        return await response.json();
+        const data = {
+            data: await response.json(),
+            ok: true
+        }
+
+        return data;
     } catch (error) {
-        console.error("Erro na requisição DELETE:", error);
+        console.error(error);
         throw error;
     }
 }
