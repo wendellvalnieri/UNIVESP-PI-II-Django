@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/responsivo.css' %}">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'js/helpers.js' %}"></script>
 
     <title>Salão Tammy Beleza</title>
 </head>
@@ -30,10 +31,13 @@
         </div>
         <div class="menu">
             <a href="/">Home</a>
-            <a href="/login">Login</a>
-            <a href="/produtos">Lista Produtos</a>
+            <a href="/produtos">Produtos</a>
             <a href="/servicos">Serviços</a>
             <a href="/contato">Contato</a>
+
+            <a href="/login" id="login-link" style="display: none;">Login</a>
+            <a href="#" id="logout-link" style="display: none;" onclick="logout()">Logout</a>
+
         </div>
     </nav>
 
@@ -57,6 +61,18 @@
     </a>
 
     <!-- Bootstrap JavaScript e jQuery -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = sessionStorage.getItem('token');
+
+            if (token) {
+                document.getElementById('logout-link').style.display = 'inline';
+            } else {
+                document.getElementById('login-link').style.display = 'inline';
+            }
+        });
+
+    </script>
     {% bootstrap_javascript jquery='full' %}
 </body>
 

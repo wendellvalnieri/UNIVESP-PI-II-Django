@@ -21,45 +21,74 @@
                             <p>{{servico.descricao}}</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <input type="hidden" name="servico_id" value="{{ servico.id }}">
 
-                                <div class="form-group">
+                    <div id="auth-content-{{ servico.id }}" class="row" style="display: none;">
+                        <div class="row">
+                            <div class="col">
+                                <form id="form-{{ servico.id }}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="servico_id" value="{{ servico.id }}">
 
-                                    <label for="data-reserva-{{ servico.id }}"
-                                        class="col-form-label col-3">Data:</label>
-                                    <div class="col-12">
-                                        <input type="date" class="form-control" id="data-reserva-{{ servico.id }}"
-                                            name="data-reserva" required />
+                                    <div class="form-group">
+
+                                        <label for="data-reserva-{{ servico.id }}"
+                                            class="col-form-label col-3">Data:</label>
+                                        <div class="col-12">
+                                            <input type="date" class="form-control" id="data-reserva-{{ servico.id }}"
+                                                name="data_reserva" required />
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
+                                    <div class="form-group">
 
-                                    <label for="hora-reserva-{{ servico.id }}"
-                                        class="col-form-label col-3">Hora:</label>
-                                    <div class="col-12">
-                                        <input type="time" class="form-control" id="hora-reserva-{{ servico.id }}"
-                                            name="hora-reserva" required />
+                                        <label for="hora-reserva-{{ servico.id }}"
+                                            class="col-form-label col-3">Hora:</label>
+                                        <div class="col-12">
+                                            <input type="time" class="form-control" id="hora-reserva-{{ servico.id }}"
+                                                name="hora_reserva" required />
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-
-                                    <div class="col-12 text-end mt-3">
-                                        <button type="submit" class="btn btn-primary btn-block">
-                                            <i class="fas fa-shopping-cart"></i> Reservar
-                                        </button>
+                                    <div class="form-group">
+                                        <div class="col-12 text-end mt-3">
+                                            <button type="submit" class="btn btn-primary btn-block">
+                                                <i class="fas fa-shopping-cart"></i> Reservar
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Mensagem para exibir se o usuário não estiver autenticado -->
+                    <div id="not-authenticated-{{ servico.id }}" class="row" style="display: none;">
+                        <div class="col text-center">
+                            <p>Você precisa estar autenticado para fazer uma reserva. <a href="/login/">Faça login</a>.
+                            </p>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    // Quando o modal abrir, verifica se o usuário está autenticado (checa sessionStorage para token)
+    document.addEventListener('DOMContentLoaded', function () {
+        const token = sessionStorage.getItem('token');  // ou localStorage, se você armazenar o token lá
+
+        // Para cada serviço (caso você tenha múltiplos modais)
+        const id = '{{ servico.id }}';  // Obtém o ID do serviço de forma dinâmica
+
+        if (token) {
+            // Se o token estiver presente, exibe o formulário de reserva
+            document.getElementById(`auth-content-${id}`).style.display = 'block';
+        } else {
+            // Se o token não estiver presente, exibe a mensagem de não autenticado
+            document.getElementById(`not-authenticated-${id}`).style.display = 'block';
+        }
+    });
+</script>

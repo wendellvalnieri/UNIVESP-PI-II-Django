@@ -6,7 +6,7 @@ function logout() {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, apagar!',
+        confirmButtonText: 'Sim',
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {

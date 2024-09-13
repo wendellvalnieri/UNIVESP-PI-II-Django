@@ -3,6 +3,7 @@ from stdimage.models import StdImageField
 from django.utils import timezone
 
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 
 # signals
 from django.db.models import signals
@@ -68,5 +69,24 @@ def produto_pre_save(signal, instance, sender, **kwargs):
         instance.slug = slugify(instance.nome)
 
 signals.pre_save.connect(produto_pre_save, sender=Produto)
+
+
+class Reserva(models.Model):
+    STATUS_CHOICES = [
+        ('Pendente', 'Pendente'),
+        ('Confirmado', 'Confirmado'),
+        ('Cancelado', 'Cancelado'),
+    ]
+    
+    servico = models.ForeignKey(Servico, on_delete=models.PROTECT, related_name='reservas')
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT, related_name='reservas')
+    data_reserva = models.DateField()
+    hora_reserva = models.TimeField()
+    observacoes = models.TextField(null=True, blank=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Pendente')
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Reserva de {self.usuario} para {self.servico} em {self.data_reserva} às {self.hora_reserva}"
 
 

@@ -26,25 +26,36 @@
                     </div>
                     {% endif %}
 
-                    <div class="row">
-                        <div class="col">
-                            <form>
-                                {% csrf_token %}
-                                <div class="form-group row align-items-center">
-                                    <label for="quantidade_{{ produto.id }}"
-                                        class="col-form-label col-3">Quantidade:</label>
-                                    <div class="col-3">
-                                        <input type="number" class="form-control" id="quantidade_{{ produto.id }}"
-                                            name="quantidade" value="1" min="1" />
+                    <div id="auth-content-{{ produto.id }}" class="row" style="display: none;">
+
+                        <div class="row">
+                            <div class="col">
+                                <form>
+                                    {% csrf_token %}
+                                    <div class="form-group row align-items-center">
+                                        <label for="quantidade_{{ produto.id }}"
+                                            class="col-form-label col-3">Quantidade:</label>
+                                        <div class="col-3">
+                                            <input type="number" class="form-control" id="quantidade_{{ produto.id }}"
+                                                name="quantidade" value="1" min="1" />
+                                        </div>
+                                        <input type="hidden" name="produto_id" value="{{ produto.id }}">
+                                        <div class="col-6 text-end">
+                                            <button type="submit" class="btn btn-primary btn-block">
+                                                <i class="fas fa-shopping-cart"></i> Comprar
+                                            </button>
+                                        </div>
                                     </div>
-                                    <input type="hidden" name="produto_id" value="{{ produto.id }}">
-                                    <div class="col-6 text-end">
-                                        <button type="submit" class="btn btn-primary btn-block">
-                                            <i class="fas fa-shopping-cart"></i> Comprar
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mensagem para exibir se o usuário não estiver autenticado -->
+                    <div id="not-authenticated-{{ produto.id }}" class="row" style="display: none;">
+                        <div class="col text-center">
+                            <p>Você precisa estar autenticado para fazer uma reserva. <a href="/login/">Faça login</a>.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -52,3 +63,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Quando o modal abrir, verifica se o usuário está autenticado (checa sessionStorage para token)
+    document.addEventListener('DOMContentLoaded', function () {
+        const token = sessionStorage.getItem('token');  // ou localStorage, se você armazenar o token lá
+
+        // Para cada serviço (caso você tenha múltiplos modais)
+        const id = '{{ produto.id }}';  // Obtém o ID do serviço de forma dinâmica
+
+        if (token) {
+            // Se o token estiver presente, exibe o formulário de reserva
+            document.getElementById(`auth-content-${id}`).style.display = 'block';
+        } else {
+            // Se o token não estiver presente, exibe a mensagem de não autenticado
+            document.getElementById(`not-authenticated-${id}`).style.display = 'block';
+        }
+    });
+</script>

@@ -11,7 +11,7 @@ urlpatterns = [
     path('servicos/', servicos, name='servicos'),
     path('login/', login_view, name='login'),
     path('home/', home, name='login'),
-    
+
     path('sucesso', sucessoPage, name='sucesso'),
     
     path('administrador', admin_dashboard, name='dashboard'),

@@ -5,10 +5,12 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 from .forms import ContatoForm, ProdutoForm,ServicoForm,UserForm
-from .models import Produto,Servico
+from .models import Produto,Servico, Reserva
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 API_URL = 'http://localhost:4333'
 
@@ -49,7 +51,6 @@ def contato(request):
         'form': form
     }
     return render(request, 'contato.html', context)
-
 
 def produto(request):
     if str(request.user) == 'AnonymousUser':
