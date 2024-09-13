@@ -12,7 +12,7 @@ urlpatterns = [
     path('home/', home, name='login'),
     
     
-    path('administrador/dashboard', admin_dashboard, name='dashboard'),
+    path('administrador', admin_dashboard, name='dashboard'),
     path('administrador/reservas', admin_reservas, name='reservas'),
     path('administrador/compras', admin_compras, name='compras'),
     
