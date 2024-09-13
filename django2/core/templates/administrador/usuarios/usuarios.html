@@ -1,10 +1,12 @@
 {% extends 'administrador/base_admin.html' %}
 
-
 {% block content %}
 <div class="row">
     <div class="col">
-        <h2>Reservas</h2>
+        <h2>Usuários</h2>
+    </div>
+    <div class="col">
+        <a href="usuarios/novo">Novo</a>
     </div>
 </div>
 <div class="row">
@@ -14,9 +16,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Usuário</th>
-                    <th>Serviço</th>
-                    <th>Data</th>
-                    <th>Hora</th>
+                    <th>Email</th>
                     <th>Opções</th>
                 </tr>
             </thead>
@@ -25,15 +25,15 @@
                     {% for item in data %}
                 <tr>
                     <td>{{ item.id }}</td>
-                    <td>{{ item.nome_usuario }}</td>
-                    <td>{{ item.nome_servico }}</td>
-                    <td>{{ item.data_reserva }}</td>
-                    <td>{{ item.hora_reserva }}</td>
-                    <td></td>
+                    <td>{{ item.first_name }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>
+                        <a href="usuarios/{{ item.id }}/editar">Editar</a>
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="3">Nenhum item encontrado.</td>
+                    <td colspan="3">Nenhum item encotnrado.</td>
                 </tr>
                 {% endfor %}
                 </tr>

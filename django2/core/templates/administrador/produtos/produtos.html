@@ -1,10 +1,12 @@
 {% extends 'administrador/base_admin.html' %}
 
-
 {% block content %}
 <div class="row">
     <div class="col">
-        <h2>Reservas</h2>
+        <h2>Produtos </h1>
+    </div>
+    <div class="col">
+        <a href="produtos/novo">Novo</a>
     </div>
 </div>
 <div class="row">
@@ -13,10 +15,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Usuário</th>
-                    <th>Serviço</th>
-                    <th>Data</th>
-                    <th>Hora</th>
+                    <th>Nome</th>
+                    <th>Estoque</th>
+                    <th>Preço</th>
                     <th>Opções</th>
                 </tr>
             </thead>
@@ -25,11 +26,12 @@
                     {% for item in data %}
                 <tr>
                     <td>{{ item.id }}</td>
-                    <td>{{ item.nome_usuario }}</td>
-                    <td>{{ item.nome_servico }}</td>
-                    <td>{{ item.data_reserva }}</td>
-                    <td>{{ item.hora_reserva }}</td>
-                    <td></td>
+                    <td>{{ item.nome }}</td>
+                    <td>{{ item.estoque }}</td>
+                    <td>{{ item.preco }}</td>
+                    <td>
+                        <a href="produtos/{{ item.id }}/editar">Editar</a>
+                    </td>
                 </tr>
                 {% empty %}
                 <tr>
@@ -41,4 +43,5 @@
         </table>
     </div>
 </div>
+
 {% endblock %}

@@ -1,7 +1,10 @@
 import requests
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
+
 from django.contrib import messages
 
-from .forms import ContatoForm, ProdutoModelForm
+from .forms import ContatoForm, ProdutoForm,ServicoForm,UserForm
 from .models import Produto
 
 from django.shortcuts import render, redirect
@@ -48,17 +51,17 @@ def contato(request):
 def produto(request):
     if str(request.user) == 'AnonymousUser':
         if str(request.method) == 'POST':
-            form = ProdutoModelForm(request.POST, request.FILES)
+            form = ProdutoForm(request.POST, request.FILES)
             if form.is_valid():
 
                 form.save()
 
                 messages.success(request, 'Produto salvo com sucesso.')
-                form = ProdutoModelForm()
+                form = ProdutoForm()
             else:
                 messages.error(request, 'Erro ao salvar produto.')
         else:
-            form = ProdutoModelForm()
+            form = ProdutoForm()
         context = {
             'form': form
         }
@@ -93,14 +96,6 @@ def produtos(request):
 def admin_dashboard(request):
     return render(request, 'administrador/dashboard.html')
 
-def admin_usuarios(request):
-    response = requests.get(API_URL+ '/usuarios')
-    
-    if response.status_code == 200:
-        data = response.json()
-    else:
-        data = []
-    return render(request, 'administrador/usuarios.html',{"data":data})
 
 def admin_reservas(request):
     response = requests.get(API_URL+ '/reservas')
@@ -120,6 +115,8 @@ def admin_compras(request):
         data = []
     return render(request, 'administrador/compras.html', {'data': data})
 
+
+
 def admin_produtos(request):
     response = requests.get(API_URL+ '/produtos')
     
@@ -127,4 +124,78 @@ def admin_produtos(request):
         data = response.json()
     else:
         data = []
-    return render(request, 'administrador/produtos.html',{"data":data})
+    return render(request, 'administrador/produtos/produtos.html',{"data":data})
+
+def admin_produtos_form(request,id=None):
+    if id:
+        produto = get_object_or_404(Produto, id=id)  
+        titulo = 'Editar Produto'
+    else:
+        produto = None
+        titulo = 'Criar Produto'
+    
+    if request.method == 'POST':
+        form = ProdutoForm(request.POST, request.FILES, instance=produto)
+        if form.is_valid():
+            form.save()
+            return redirect('nome_da_view_de_sucesso')  # Redirecionar para alguma view após salvar
+    else:
+        form = ProdutoForm(instance=produto)
+
+    return render(request, 'administrador/produtos/produtos_form.html',{'form': form, 'titulo': titulo})
+
+def admin_servicos(request):
+    response = requests.get(API_URL+ '/servicos')
+    
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = []
+    return render(request, 'administrador/servicos/servicos.html',{"data":data})
+
+def admin_servicos_form(request,id=None):
+    if id:
+        servico = get_object_or_404(Produto, id=id)  
+        titulo = 'Editar Serviço'
+    else:
+        servico = None
+        titulo = 'Criar Serviço'
+    
+    if request.method == 'POST':
+        form = ServicoForm(request.POST, request.FILES, instance=produto)
+        if form.is_valid():
+            form.save()
+            return redirect('nome_da_view_de_sucesso')  # Redirecionar para alguma view após salvar
+    else:
+        form = ServicoForm(instance=servico)
+
+    return render(request, 'administrador/produtos/produtos_form.html',{'form': form, 'titulo': titulo})
+
+def admin_usuarios(request):
+    response = requests.get(API_URL+ '/usuarios')
+    
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = []
+    return render(request, 'administrador/usuarios/usuarios.html',{"data":data})
+
+
+def admin_usuarios_form(request,id=None):
+    if id:
+        servico = get_object_or_404(User, id=id)  
+        titulo = 'Editar Usuário'
+    else:
+        servico = None
+        titulo = 'Criar Usuário'
+    
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=produto)
+        if form.is_valid():
+            form.save()
+            return redirect('nome_da_view_de_sucesso')  # Redirecionar para alguma view após salvar
+    else:
+        form = UserForm(instance=servico)
+
+    return render(request, 'administrador/usuarios/usuarios_form.html',{'form': form, 'titulo': titulo})
+
