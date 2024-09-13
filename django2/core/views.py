@@ -1,14 +1,8 @@
 import requests
-from django.shortcuts import render
 from django.contrib import messages
-from django.shortcuts import redirect
 
 from .forms import ContatoForm, ProdutoModelForm
 from .models import Produto
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -99,5 +93,38 @@ def produtos(request):
 def admin_dashboard(request):
     return render(request, 'administrador/dashboard.html')
 
-def usuario_dashboard(request):
-    return render(request, 'usuario/dashboard.html')
+def admin_usuarios(request):
+    response = requests.get(API_URL+ '/usuarios')
+    
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = []
+    return render(request, 'administrador/usuarios.html',{"data":data})
+
+def admin_reservas(request):
+    response = requests.get(API_URL+ '/reservas')
+    
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = []
+    return render(request, 'administrador/reservas.html',{"data":data})
+
+def admin_compras(request):
+    response = requests.get(API_URL+ '/compras')
+    
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = []
+    return render(request, 'administrador/compras.html', {'data': data})
+
+def admin_produtos(request):
+    response = requests.get(API_URL+ '/produtos')
+    
+    if response.status_code == 200:
+        data = response.json()
+    else:
+        data = []
+    return render(request, 'administrador/produtos.html',{"data":data})

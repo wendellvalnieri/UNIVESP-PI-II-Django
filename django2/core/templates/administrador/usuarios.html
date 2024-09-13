@@ -1,0 +1,31 @@
+{% extends 'administrador/base_admin.html' %}
+
+{% block content %}
+<h1>Usuários</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Email</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ reserva.id }}</td> 
+            <td>{{ reserva.first_name }}</td> 
+            <td>{{ reserva.email }}</td> 
+            <td></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhuma compra encontrada.</td>
+        </tr>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
