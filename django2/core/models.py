@@ -1,5 +1,6 @@
 from django.db import models
 from stdimage.models import StdImageField
+from django.utils import timezone
 
 from django.utils.text import slugify
 
@@ -20,9 +21,12 @@ class Produto(models.Model):
     nome = models.CharField('Nome', max_length=100)
     preco = models.DecimalField('Preço', decimal_places=2, max_digits=8)
     estoque = models.IntegerField('Estoque')
-    imagem = StdImageField('Imagem', upload_to='produtos', variations={'thumb': (124, 124)}, delete_orphans=True)
+    imagem = StdImageField('Imagem', upload_to='produtos', variations={'thumb': (124, 124)}, delete_orphans=True,  blank=True)
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
     descricao = models.TextField('Descrição', max_length=255, blank=True, null=True)
+    criado = models.DateField('Criado', auto_now_add=True)
+    modificado = models.DateField('Modificado', auto_now=True)
+    ativo = models.BooleanField('Ativo', default=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -42,6 +46,7 @@ class Servico(models.Model):
     preco = models.DecimalField('Preço', decimal_places=2, max_digits=8)
     imagem = StdImageField('Imagem', upload_to='servicos', variations={'thumb': (124, 124)}, null=True, blank=True, delete_orphans=True)
     descricao = models.TextField('Descrição', max_length=255, blank=True, null=True)
+    slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
     criado = models.DateField('Criado', auto_now_add=True)
     modificado = models.DateField('Modificado', auto_now=True)
     ativo = models.BooleanField('Ativo', default=True)

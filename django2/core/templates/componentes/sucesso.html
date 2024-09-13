@@ -1,0 +1,15 @@
+{% extends 'administrador/base_admin.html' %}
+
+{% block content %}
+<h1>Sucesso</h1>
+<p>Você será redirecionado em segundos</p>
+
+<script>
+    var link = "{{ link }}";
+
+    setTimeout(function () {
+        window.location.href = link;
+    }, 2000);  
+</script>
+
+{% endblock %}

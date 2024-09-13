@@ -8,15 +8,15 @@ async function login(username, password) {
 
     try {
         loadingMessage();
-        const data = await postRequest(endpoint, { username, password });
+        const response = await postRequest(endpoint, { username, password });
         
-        if (!data?.ok) {
-            throw new Error(data.message);
+        if (!response?.ok) {
+            throw new Error(response.message);
         }
 
-        const urlDashboard = data.isAdmin ? "/administrador/dashboard" : "/usuario/dashboard";
+        const urlDashboard = response.isAdmin ? "/administrador" : "/";
 
-        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('token', response.data.token);
 
         setTimeout(() => {
             window.location.href = urlDashboard;

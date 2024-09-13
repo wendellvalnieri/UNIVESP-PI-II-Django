@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import index, contato,home, produto,produtos, servicos, login_view,admin_servicos,admin_dashboard,admin_usuarios,admin_reservas,admin_compras,admin_produtos,admin_servicos,admin_produtos_form,admin_servicos_form,admin_usuarios_form
+from .views import index, contato,home, produto,produtos, servicos, login_view,admin_servicos,admin_dashboard,admin_usuarios,admin_reservas,admin_compras,admin_produtos,admin_servicos,admin_produtos_form,admin_servicos_form,admin_usuarios_form,sucessoPage
 
 urlpatterns = [
+    
     path('', index, name='home'),
     path('contato/', contato, name='contato'),
     path('produto/', produto, name='produto'),
@@ -11,6 +12,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('home/', home, name='login'),
     
+    path('sucesso', sucessoPage, name='sucesso'),
     
     path('administrador', admin_dashboard, name='dashboard'),
     path('administrador/reservas', admin_reservas, name='reservas'),

@@ -21,14 +21,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    {% for item in data %}
-                <tr>
+                {% for item in data %}
+                <tr id="item-{{ item.id }}">
                     <td>{{ item.id }}</td>
                     <td>{{ item.first_name }}</td>
                     <td>{{ item.email }}</td>
                     <td>
-                        <a href="usuarios/{{ item.id }}/editar">Editar</a>
+                        <a class="btn btn-primary" href="usuarios/{{ item.id }}/editar">Editar</a>
+                        <button class="btn btn-danger" data-item-id="{{ item.id }}"
+                            data-endpoint="usuarios">Apagar</button>
                     </td>
                 </tr>
                 {% empty %}
@@ -36,7 +37,6 @@
                     <td colspan="3">Nenhum item encotnrado.</td>
                 </tr>
                 {% endfor %}
-                </tr>
             </tbody>
         </table>
     </div>

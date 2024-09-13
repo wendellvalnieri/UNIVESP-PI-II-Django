@@ -30,7 +30,7 @@ class ContatoForm(forms.Form):
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['nome', 'preco', 'estoque', 'imagem', 'descricao']  # List of fields excluding 'slug'
+        fields = ['nome', 'preco', 'estoque', 'imagem', 'descricao']  
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
             'preco': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -42,7 +42,7 @@ class ProdutoForm(forms.ModelForm):
 class ServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
-        fields = ['nome', 'preco', 'imagem', 'descricao', 'ativo']  # Excluímos 'slug' pois é não-editável
+        fields = ['nome', 'preco', 'imagem', 'descricao', 'ativo'] 
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
             'preco': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -53,7 +53,7 @@ class ServicoForm(forms.ModelForm):
         
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(), required=False)  # Campo de senha não obrigatório
+    password = forms.CharField(widget=forms.PasswordInput(), required=False)  
 
     class Meta:
         model = User
@@ -70,7 +70,6 @@ class UserForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        # Se a senha foi inserida, definimos a senha
         if self.cleaned_data['password']:
             user.set_password(self.cleaned_data['password'])
         if commit:

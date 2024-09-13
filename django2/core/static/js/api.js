@@ -14,8 +14,9 @@ function createHeaders() {
 }
 
 export async function getRequest(endpoint) {
+    const url = `${baseURL}/${endpoint}`;
     try {
-        const response = await fetch(`${baseURL}${endpoint}`, {
+        const response = await fetch(url, {
             method: "GET",
             headers: createHeaders()
         });
@@ -37,8 +38,10 @@ export async function getRequest(endpoint) {
 }
 
 export async function postRequest(endpoint, body) {
+    const url = `${baseURL}${endpoint}`;
+
     try {
-        const response = await fetch(`${baseURL}${endpoint}`, {
+        const response = await fetch(url, {
             method: "POST",
             headers: createHeaders(),
             body: JSON.stringify(body)
@@ -61,8 +64,9 @@ export async function postRequest(endpoint, body) {
 }
 
 export async function putRequest(endpoint, body) {
+    const url = `${baseURL}${endpoint}`;
     try {
-        const response = await fetch(`${baseURL}${endpoint}`, {
+        const response = await fetch(url, {
             method: "PUT",
             headers: createHeaders(),
             body: JSON.stringify(body)
@@ -84,23 +88,19 @@ export async function putRequest(endpoint, body) {
     }
 }
 
-export async function deleteRequest(endpoint) {
+export async function deleteRequest(endpoint, id) {
+    const url = `${baseURL}/${endpoint}/${id}`;
     try {
-        const response = await fetch(`${baseURL}${endpoint}`, {
+        const response = await fetch(url, {
             method: "DELETE",
             headers: createHeaders()
         });
 
         if (!response.ok) {
-            throw new Error(esponse.statusText);
+            throw new Error(response.statusText);
         }
 
-        const data = {
-            data: await response.json(),
-            ok: true
-        }
-
-        return data;
+        return response;
     } catch (error) {
         console.error(error);
         throw error;

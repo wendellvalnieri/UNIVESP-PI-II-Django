@@ -1,4 +1,5 @@
 {% extends 'administrador/base_admin.html' %}
+{% load static %}
 
 {% block content %}
 <div class="row">
@@ -21,14 +22,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    {% for item in data %}
-                <tr>
+                {% for item in data %}
+                <tr id="item-{{ item.id }}">
                     <td>{{ item.id }}</td>
                     <td>{{ item.nome }}</td>
                     <td>{{ item.preco }}</td>
                     <td>
-                        <a href="produtos/{{ item.id }}/editar">Editar</a>
+                        <a class="btn btn-primary" href="servicos/{{ item.id }}/editar">Editar</a>
+                        <button class="btn btn-danger" data-item-id="{{ item.id }}"
+                            data-endpoint="servicos">Apagar</button>
                     </td>
                 </tr>
                 {% empty %}
@@ -36,9 +38,10 @@
                     <td colspan="3">Nenhum item encontrado.</td>
                 </tr>
                 {% endfor %}
-                </tr>
             </tbody>
         </table>
     </div>
 </div>
+<script type="module" src="{% static 'js/crud.js' %}"></script>
+
 {% endblock %}
