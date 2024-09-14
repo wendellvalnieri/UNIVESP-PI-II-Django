@@ -18,12 +18,21 @@
                             <img src="{{ produto.imagem }}" class="img-fluid" alt="{{ produto.nome }}" />
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Preço: R$ {{ produto.preco }}</p>
+                        </div>
+                        <div class="col">
+                            <p>Preço Total: R$ <span id="valorTotal_{{ produto.id }}"> {{ produto.preco }} </span></p>
+                        </div>
+                    </div>
                     {% if produto.descricao %}
                     <div class="row">
                         <div class="col">
                             <p>{{ produto.descricao }}</p>
                         </div>
                     </div>
+
                     {% endif %}
 
                     <div id="auth-content-{{ produto.id }}" class="row" style="display: none;">
@@ -33,11 +42,13 @@
                                 <form>
                                     {% csrf_token %}
                                     <div class="form-group row align-items-center">
+                                        <input type="hidden" name="preco" value="{{ produto.preco }}" />
                                         <label for="quantidade_{{ produto.id }}"
                                             class="col-form-label col-3">Quantidade:</label>
                                         <div class="col-3">
                                             <input type="number" class="form-control" id="quantidade_{{ produto.id }}"
-                                                name="quantidade" value="1" min="1" />
+                                                name="quantidade" value="1" min="1"
+                                                onchange="calcularTotal({{produto.id}},{{produto.preco}})" />
                                         </div>
                                         <input type="hidden" name="produto_id" value="{{ produto.id }}">
                                         <div class="col-6 text-end">
@@ -80,4 +91,11 @@
             document.getElementById(`not-authenticated-${id}`).style.display = 'block';
         }
     });
+
+    function calcularTotal(produto_id, preco) {
+        const inputQtd = document.querySelector(`#quantidade_${produto_id}`);
+        const valorTotalQtd = document.querySelector(`#valorTotal_${produto_id}`);
+        const total = parseInt(inputQtd.value) * preco;
+        valorTotalQtd.innerText = total;
+    }
 </script>

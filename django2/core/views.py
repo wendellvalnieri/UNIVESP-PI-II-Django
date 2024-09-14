@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 from .forms import ContatoForm, ProdutoForm,ServicoForm,UserForm
-from .models import Produto,Servico, Reserva
+from .models import Produto,Servico
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
@@ -19,6 +19,13 @@ def sucessoPage(request):
 
 def login_view(request):
     return render(request, 'login.html')
+
+def minhas_reservas(request):
+    return render(request, 'usuarios/minhas_reservas.html')
+
+def minhas_compras(request):
+    return render(request, 'usuarios/minhas_compras.html')
+
 
 def index(request):
     return render(request, 'index.html')

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap4 static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Minhas Reservas</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuário</th>
+                        <th>Serviço</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                    </tr>
+                </thead>
+                <tbody  id="reservas-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module" src="{% static 'js/reservas.js' %}"></script>
+</div>
+
+{% endblock %}

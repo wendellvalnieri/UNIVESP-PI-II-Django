@@ -35,8 +35,11 @@
             <a href="/servicos">Serviços</a>
             <a href="/contato">Contato</a>
 
-            <a href="/login" id="login-link" style="display: none;">Login</a>
-            <a href="#" id="logout-link" style="display: none;" onclick="logout()">Logout</a>
+            <a href="/login" class="notLogged" style="display: none;">Login</a>
+            <a href="/usuarios/minhas_compras" class="logged" style="display: none;">Minhas Compras</a>
+            <a href="/usuarios/minhas_reservas" class="logged" style="display: none;">Minhas Reservas</a>
+
+            <a href="#" class="logged" style="display: none;" onclick="logout()">Logout</a>
 
         </div>
     </nav>
@@ -65,10 +68,19 @@
         document.addEventListener('DOMContentLoaded', function () {
             const token = sessionStorage.getItem('token');
 
+            // Função para alternar a exibição de elementos com base na classe
+            const toggleDisplay = (className, displayStyle) => {
+                document.querySelectorAll(`.${className}`).forEach(element => {
+                    element.style.display = displayStyle;
+                });
+            };
+
             if (token) {
-                document.getElementById('logout-link').style.display = 'inline';
+                toggleDisplay('logged', 'inline');
+                toggleDisplay('notLogged', 'none');
             } else {
-                document.getElementById('login-link').style.display = 'inline';
+                toggleDisplay('notLogged', 'inline');
+                toggleDisplay('logged', 'none');
             }
         });
 
