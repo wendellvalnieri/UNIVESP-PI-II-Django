@@ -36,7 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    getReservas();
+    const reservasBody = document.getElementById('reservas-body');
+    if (reservasBody) {
+        getReservas();
+    }
 });
 
 async function getReservas() {

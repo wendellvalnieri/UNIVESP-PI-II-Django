@@ -37,7 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-    getCompras()
+
+    const comprasBody = document.getElementById('compras-body');
+    if (comprasBody) {
+        getCompras();
+    }
 });
 
 
