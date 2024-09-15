@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-hq*d%jbqvv-(-anqc-v^5q87w^99#4o+0!yr$ug0#q6cxvwh3a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','https://wendell-univesp-pi-da919e2fec31.herokuapp.com']
 
 
 # Application definition
@@ -139,6 +141,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     BASE_DIR / "core/static",
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -158,3 +162,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ### EMAIL_HOST_PASSWORD = 'sua senha' qual a senha do e-mail do reply
 
 API_URL = "http://localhost:33333"
+
+django_heroku.settings(locals())
