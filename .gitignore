@@ -56,3 +56,5 @@ Pipfile.lock
 *.log
 *.out
 *.pid
+
+staticfiles
