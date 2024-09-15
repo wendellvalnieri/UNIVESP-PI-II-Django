@@ -12,11 +12,11 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('home/', home, name='login'),
 
+    path('sucesso', sucessoPage, name='sucesso'),
+
     path('usuarios/minhas_compras', minhas_compras, name='minhas_compras'),
     path('usuarios/minhas_reservas', minhas_reservas, name='minhas_reservas'),
 
-    path('sucesso', sucessoPage, name='sucesso'),
-    
     path('administrador', admin_dashboard, name='dashboard'),
     path('administrador/reservas', admin_reservas, name='reservas'),
     path('administrador/compras', admin_compras, name='compras'),

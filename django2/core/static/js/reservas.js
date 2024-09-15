@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function getReservas() {
-    const response = await getRequest("reservas");
+    const response = await getRequest("reservas/byUser");
     let data;
     if (response.ok) {
         data = response.data;
@@ -53,8 +53,6 @@ async function getReservas() {
             const row = document.createElement('tr');
 
             row.innerHTML = `
-                  <td>${reserva.id}</td>
-                  <td>${reserva.nome_usuario}</td>
                   <td>${reserva.nome_servico}</td>
                   <td>${formatDate(reserva.data_reserva)}</td>
                   <td>${reserva.hora_reserva}</td>

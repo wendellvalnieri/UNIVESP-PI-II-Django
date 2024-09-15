@@ -44,10 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
-
 async function getCompras() {
-    const response = await getRequest("compras");
+    const response = await getRequest(`compras/byUser`);
     let data;
     if (response.ok) {
         data = response.data;
@@ -57,8 +55,6 @@ async function getCompras() {
             const row = document.createElement('tr');
 
             row.innerHTML = `
-                <td>${compra.id}</td>
-                <td>${compra.nome_cliente}</td>
                 <td>${compra.quantidade}</td>
                 <td>${compra.preco ? compra.preco : 'N/A'}</td> <!-- Exibir 'N/A' se o preço for null -->
                 <td>${compra.preco_total}</td>

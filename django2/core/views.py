@@ -13,6 +13,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 API_URL = 'http://localhost:4333'
+token = 'seu_token_aqui'
 
 def sucessoPage(request):
     return render(request, 'componentes/sucesso.html')
@@ -25,7 +26,6 @@ def minhas_reservas(request):
 
 def minhas_compras(request):
     return render(request, 'usuarios/minhas_compras.html')
-
 
 def index(request):
     return render(request, 'index.html')
@@ -41,7 +41,6 @@ def listaProdutos(request):
         'produtos': Produto.objects.all()
     }
     return render(request, 'listaProdutos.html', context)
-
 
 def contato(request):
     form = ContatoForm(request.POST or None)
