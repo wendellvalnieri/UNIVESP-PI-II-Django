@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="{% static 'css/responsivo.css' %}">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{% static 'js/helpers.js' %}"></script>
 
     <title>Salão Tammy Beleza</title>
 </head>
@@ -47,8 +46,25 @@
     <div class="container" id="content">
         {% block content %}
         {% endblock %}
+
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
     </div>
 
+    <button id="toggleToolbarBtn" class="toggle-toolbar-btn">
+        <img src="https://www.svgrepo.com/show/327598/accessibility.svg" alt="Acessibilidade">
+    </button>
+
+    <div class="toolbar" aria-label="Accessibility Toolbar">
+        <button id="increase-font">Aumentar Fonte</button>
+        <button id="decrease-font">Diminuir Fonte</button>
+        <button id="toggle-contrast">Trocar contraste</button>
+        <button id="reset">Limpar</button>
+    </div>
     <footer>
         <div class="logo-rodape">
             <h1 class="salao" style="color:white">Salão Tammy Beleza</h1>
@@ -58,13 +74,18 @@
         <b style="color:white;">© Todos os direitos reservados.</b>
     </footer>
 
-    <!-- Botão do WhatsApp -->
+
     <a class="whats" target="_blank" href="https://api.whatsapp.com/send?phone=5511997808623">
-        <img src="{% static 'images/whatsapp-icon.png' %}">
+        <img src="{% static 'images/whatsapp-icon.png' %}" alt="whatsapp">
     </a>
 
-    <!-- Bootstrap JavaScript e jQuery -->
+    <script src="{% static 'js/helpers.js' %}"></script>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
     <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+
         document.addEventListener('DOMContentLoaded', function () {
             const token = sessionStorage.getItem('token');
 
@@ -85,6 +106,7 @@
         });
 
     </script>
+
     {% bootstrap_javascript jquery='full' %}
 </body>
 

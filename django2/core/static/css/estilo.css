@@ -21,6 +21,11 @@ body {
     font-family: 'ROBOTO', sans-serif;
 }
 
+a,
+a:hover {
+    text-decoration: none;
+}
+
 .navbar {
     display: flex;
     flex-flow: row wrap;
@@ -88,14 +93,12 @@ body {
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    background: white;
     padding: 100px;
 }
 
 .headline {
     margin-left: 10%;
     flex: 40%;
-    /* border:1px solid black; */
 }
 
 .headline h2 {
@@ -107,18 +110,18 @@ body {
 }
 
 .headline p {
-    color: gray;
     text-align: left;
 }
 
 .contact-btn {
     display: inline-block;
-    background: #FF2978;
+    background: #91224b;
     padding: 20px;
     color: white;
     text-transform: uppercase;
     border-radius: 5px;
     text-decoration: none;
+    text-align: center;
 }
 
 .contact-btn:hover {
@@ -224,6 +227,62 @@ table {
 
 #th {
     font-family: 'Lobster', cursive;
-    color: darkslategray;
     font-size: 20px;
+}
+
+.high-contrast {
+    background-color: black;
+    color: black;
+}
+
+.toolbar {
+    position: fixed;
+    top: 57%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.toolbar button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: white;
+}
+
+/* Botão de alternância para mostrar/esconder a toolbar */
+.toggle-toolbar-btn {
+    position: fixed;
+    height: 40px;
+    margin-right: 10px;
+    top: 60%;
+    /* Posicionado no meio vertical da tela */
+    right: 0;
+    /* Alinhado ao lado direito */
+    transform: translateY(-50%);
+    /* Centraliza verticalmente */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    z-index: 1001;
+    /* Colocado acima da barra de ferramentas */
+}
+
+.toggle-toolbar-btn img {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
 }
